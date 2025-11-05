@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>𝕀ℕ𝕂𝕍𝔼ℝ—Modern Clothing Brand</title>
+  <meta name="description" content="NOIR & BLANC — Premium minimalist clothing. Shop modern, sustainable apparel in black & white." />
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bw-bg: #0b0b0b;
+      --bw-contrast: #ffffff;
+      --muted: #bdbdbd;
+      --glass: rgba(255,255,255,0.04);
+    }
+    html,body{height:100%;}
+    body{
+      background: linear-gradient(180deg,var(--bw-bg),#050505);
+      color:var(--bw-contrast);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:80px;
+    }
+
+    .navbar{background:transparent}
+    .brand-mark{font-weight:700;letter-spacing:2px;font-size:1.05rem;color:var(--bw-contrast)}
+    .nav-link{color:var(--muted)!important}
+    .nav-link:hover{color:var(--bw-contrast)!important}
+
+    .hero{padding:6rem 0 4rem 0;text-align:left}
+    .hero h1{font-size:3.25rem;letter-spacing:1px;margin-bottom:.5rem}
+    .hero p{color:var(--muted);font-size:1.02rem}
+
+    .card-product{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.06);
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .card-product:hover{transform:translateY(-6px);box-shadow:0 8px 30px rgba(0,0,0,0.7)}
+    .price{font-weight:700}
+    .muted-small{color:var(--muted);font-size:.9rem}
+
+    footer{border-top:1px solid rgba(255,255,255,0.04);padding:3rem 0 2rem 0}
+
+    .form-control, .form-select{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--bw-contrast)}
+    .form-control:focus{box-shadow:none;border-color:rgba(255,255,255,0.12)}
+
+    .divider{height:1px;background:rgba(255,255,255,0.04);margin:1.5rem 0}
+
+    .cart-overlay { position: fixed; inset:0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1055; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .25s ease; }
+    .cart-overlay.show { opacity:1; pointer-events:auto; }
+    .cart-box { width:92%; max-width:560px; background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:1.25rem; border-radius:12px; color:#fff; max-height:84vh; overflow:auto; }
+
+    .buy-note { display:none; color:var(--muted); margin-top: .8rem; text-align:center; }
+
+    .modal-content { background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.06); color: #fff; }
+    .modal-backdrop.show { background-color: rgba(0,0,0,0.6); }
+
+    @media (max-width:768px){ .hero h1{font-size:2.2rem} .hero{padding:4rem 0} }
+
+    .cart-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:.45rem .25rem; border-radius:6px; }
+    .cart-item .meta { display:flex; gap:.6rem; align-items:center; }
+    .cart-item .remove { background:transparent;border:0;color:var(--muted); cursor:pointer; font-size:1rem; }
+    .cart-item .remove:hover { color:var(--bw-contrast); }
+    .cart-empty { text-align:center; color:var(--muted); padding:1rem 0; }
+    .cart-actions { display:flex; gap:.75rem; margin-top:.75rem; }
+    .btn-cancel { background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); }
+  
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg py-3">
+    <div class="container">
+      <a class="navbar-brand brand-mark" href="#">𝕀ℕ𝕂𝕍𝔼ℝ<sup>cₗₒₜₕₛ</sup></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"><i class="bi bi-list" style="color:var(--bw-contrast)"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link px-3" href="/abt.htm">About</a></li>
+          <li class="nav-item"><a class="nav-link px-3" href="/cont.htm">Contact</a></li>
+          <li class="nav-item ms-2">
+            <button class="btn btn-outline-light btn-sm" id="cartToggle" aria-controls="cartOverlay"><i class="bi bi-bag"></i> Cart <span id="cartCount" class="ms-1 badge bg-light text-dark">0</span></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <p class="muted-small">Sustainably made · Timeless silhouettes · Limited drops</p>
+          <h1>Minimal pieces. Maximum presence.</h1>
+          <p class="lead muted-small">Discover our curated edit of elevated basics — crafted to last and designed in monochrome.</p>
+          <div class="mt-4">
+            <a class="btn btn-light btn-lg me-3" href="#collections">How to BUY</a>
+            <a class="btn btn-outline-secondary btn-lg" href="#footer">Our Story</a>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-block text-end">
+          <div style="display:inline-block;max-width:420px">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- COLLECTIONS / PRODUCTS -->
+  <section id="collections" class="py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <h2 class="mb-0">Featured</h2>
+          <p class="muted-small mb-0">A selection from our latest drop</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Product 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-product h-100 p-3">
+            <div class="ratio ratio-4x3 mb-3 overflow-hidden rounded-3">
+              <img src="/prod_hoddie/i_am_ur_villan.jpg" class="card-img-top" alt="Villain Hoodie" style="object-fit:cover;">
+            </div>
+            <div class="card-body px-0 pt-0">
+              <h5 class="mb-1">Villain Hoodie</h5>
+              <p class="muted-small mb-2">Distressed Villain Graphic Hoodie</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0"><span style="text-decoration: line-through; color: gray;">₹1000</span> <span style="color: red; font-weight: 700;">₹499</span></p>
+                <div>
+                  <button class="btn btn-sm btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#productModal1" data-name="Villain Hoodie" data-price="499" data-desc="Distressed villain graphic hoodie.">View</button>
+                  <button class="btn btn-sm btn-light add-to-cart" data-name="Villain Hoodie" data-price="499">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-product h-100 p-3">
+            <div class="ratio ratio-4x3 mb-3 overflow-hidden rounded-3">
+              <img src="/prod_hoddie/saint1.jpg" class="card-img-top" alt="Saint Hoodie" style="object-fit:cover;">
+            </div>
+            <div class="card-body px-0 pt-0">
+              <h5 class="mb-1">Saint Hoodie</h5>
+              <p class="muted-small mb-2">INKVER Special Saint Hoodie</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0"><span style="text-decoration: line-through; color: gray;">₹1299</span> <span style="color: red; font-weight: 700;">₹499</span></p>
+                <div>
+                  <button class="btn btn-sm btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#productModal2" data-name="Saint Hoodie" data-price="499" data-desc="INKVER Special Saint Hoodie.">View</button>
+                  <button class="btn btn-sm btn-light add-to-cart" data-name="Saint Hoodie" data-price="499">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-product h-100 p-3">
+            <div class="ratio ratio-4x3 mb-3 overflow-hidden rounded-3">
+              <img src="/prod_hoddie/spider.jpg" class="card-img-top" alt="Classic Shirt" style="object-fit:cover;">
+            </div>
+            <div class="card-body px-0 pt-0">
+              <h5 class="mb-1">Spider Hoodie</h5>
+              <p class="muted-small mb-2">Spiderman Genz Hoodie</p>
+               <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0"><span style="text-decoration: line-through; color: gray;">₹1045</span> <span style="color: red; font-weight: 700;">₹599</span></p>
+                <div>
+                  <button class="btn btn-sm btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#productModal3" data-name="Spiderman Genz Hoodie" data-price="599" data-desc="Crisp shirt made with long-staple cotton.">View</button>
+                  <button class="btn btn-sm btn-light add-to-cart" data-name="Spiderman Genz Hoodie" data-price="599">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-product h-100 p-3">
+            <div class="ratio ratio-4x3 mb-3 overflow-hidden rounded-3">
+              <img src="/prod_hoddie/focus.jpg" class="card-img-top" alt="Relaxed Sweatpants" style="object-fit:cover;">
+            </div>
+            <div class="card-body px-0 pt-0">
+              <h5 class="mb-1">Focus Hoodie</h5>
+              <p class="muted-small mb-2">Focus Graphic Pullover</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0"><span style="text-decoration: line-through; color: gray;">₹1045</span> <span style="color: red; font-weight: 700;">₹499</span></p>
+                <div>
+                <div>
+                  <button class="btn btn-sm btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#productModal4" data-name="Relaxed Sweatpants" data-price="499" data-desc="Cozy sweatpants for daily wear.">View</button>
+                  <button class="btn btn-sm btn-light add-to-cart" data-name="Relaxed Sweatpants" data-price="499">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- .row -->
+    </div> <!-- .container -->
+  </section>
+
+  <!-- PRODUCT MODALS (each modal has unique id; inner elements use classes so JS targets the modal instance) -->
+  <!-- Modal template (1) -->
+  <div class="modal fade product-modal" id="productModal1" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-0">
+          <h5 class="modal-title modal-product-title">Product Details</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ratio ratio-4x3 mb-3 rounded-3 overflow-hidden">
+                <img class="modal-product-image" src="/prod_hoddie/villan1.jpg" alt="product" style="object-fit:cover;width:100%;height:100%;">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h5 class="modal-product-name">Distressed Villain Graphic Hoodie</h5>
+              <p class="muted-small modal-product-desc">Distressed Villain Graphic HoodieS.</p>
+              <div class="mb-2"><span class="price modal-product-price">₹499</span></div>
+
+              <div class="mb-3">
+                <label class="form-label muted-small">Size</label>
+               *size*
+              </div>
+
+              <div class="d-flex gap-2">
+                <button class="btn btn-light btn-lg modal-buy-now">Buy now</button>
+                <button class="btn btn-outline-light btn-lg modal-quick-add" data-name="Quick Add" data-price="0">Add to cart</button>
+              </div>
+
+              <p class="buy-note modal-buy-note">We will contact you soon for payment — <strong>NO PAYMENT, NO ORDER</strong>. <button class="btn btn-sm btn-outline-light ms-2 modal-open-order">Order</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copy the same modal structure for 2,3,4 -->
+  <div class="modal fade product-modal" id="productModal2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-0">
+          <h5 class="modal-title modal-product-title">INKVER Special Saint Hoodie</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ratio ratio-4x3 mb-3 rounded-3 overflow-hidden">
+                <img class="modal-product-image" src="/prod_hoddie/saint2.jpg" alt="product" style="object-fit:cover;width:100%;height:100%;">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h5 class="modal-product-name">INKVER Special Saint Hoodie</h5>
+              <p class="muted-small modal-product-desc">INKVER Special Saint Hoodie.</p>
+              <div class="mb-2"><span class="price modal-product-price">₹499</span></div>
+
+              <div class="mb-3">
+              *size*
+              </div>
+
+              <div class="d-flex gap-2">
+                <button class="btn btn-light btn-lg modal-buy-now">Buy now</button>
+                <button class="btn btn-outline-light btn-lg modal-quick-add" data-name="Quick Add" data-price="0">Add to cart</button>
+              </div>
+
+              <p class="buy-note modal-buy-note">We will contact you soon for payment — <strong>NO PAYMENT, NO ORDER</strong>. <button class="btn btn-sm btn-outline-light ms-2 modal-open-order">Order</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--product 3-->
+  <div class="modal fade product-modal" id="productModal3" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-0">
+          <h5 class="modal-title modal-product-title">Spiderman Genz Hoodie</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ratio ratio-4x3 mb-3 rounded-3 overflow-hidden">
+                <img class="modal-product-image" src="/prod_hoddie/spider1.jpg" alt="product" style="object-fit:cover;width:100%;height:100%;">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h5 class="modal-product-name">Spiderman Genz Hoodie</h5>
+              <p class="muted-small modal-product-desc">Spiderman Genz Hoodie.</p>
+              <div class="mb-2"><span class="price modal-product-price">₹599</span></div>
+
+              <div class="mb-3">
+                <label class="form-label muted-small">Size</label>
+                <select class="form-select modal-product-size">
+                  *size*
+                </select>
+              </div>
+
+              <div class="d-flex gap-2">
+                <button class="btn btn-light btn-lg modal-buy-now">Buy now</button>
+                <button class="btn btn-outline-light btn-lg modal-quick-add" data-name="Quick Add" data-price="0">Add to cart</button>
+              </div>
+
+              <p class="buy-note modal-buy-note">We will contact you soon for payment — <strong>NO PAYMENT, NO ORDER</strong>. <button class="btn btn-sm btn-outline-light ms-2 modal-open-order">Order</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--product4-->
+  <div class="modal fade product-modal" id="productModal4" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-0">
+          <h5 class="modal-title modal-product-title">Focus Graphic Pullover</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ratio ratio-4x3 mb-3 rounded-3 overflow-hidden">
+                <img class="modal-product-image" src="/prod_hoddie/focus1.jpg" alt="product" style="object-fit:cover;width:100%;height:100%;">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h5 class="modal-product-name">Focus Graphic Pullover</h5>
+              <p class="muted-small modal-product-desc">Focus Graphic Pullover.</p>
+              <div class="mb-2"><span class="price modal-product-price">₹499</span></div>
+
+              <div class="mb-3">
+                <label class="form-label muted-small">Size</label>
+                <select class="form-select modal-product-size">
+                  *size*
+                </select>
+              </div>
+
+              <div class="d-flex gap-2">
+                <button class="btn btn-light btn-lg modal-buy-now">Buy now</button>
+                <button class="btn btn-outline-light btn-lg modal-quick-add" data-name="Quick Add" data-price="0">Add to cart</button>
+              </div>
+
+              <p class="buy-note modal-buy-note">We will contact you soon for payment — <strong>NO PAYMENT, NO ORDER</strong>. <button class="btn btn-sm btn-outline-light ms-2 modal-open-order">Order</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Order Modal (Web3Forms) -->
+  <div class="modal fade" id="orderModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h5 class="text-center mb-3">Complete your order</h5>
+
+          <form id="orderForm">
+            <input type="hidden" name="access_key" value="0e2d46e3-87ce-48c2-9dc8-7916a63f96cd">
+            <input type="hidden" name="subject" value="🖤 New Order from INKVER Website">
+            <input type="hidden" name="message" id="orderMessage">
+
+            <div class="mb-2">
+              <label class="form-label muted-small">Name</label>
+              <input name="name" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <label class="form-label muted-small">Email</label>
+              <input name="email" type="email" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <label class="form-label muted-small">Phone</label>
+              <input name="phone" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <label class="form-label muted-small">Address</label>
+              <textarea name="address" rows="3" class="form-control" required></textarea>
+            </div>
+
+            <div class="d-grid gap-2 mt-3">
+              <button type="submit" class="btn btn-light">Buy Now!</button>
+              <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+            </div>
+
+            <p class="text-success text-center mt-3 d-none" id="orderSuccess">Order submitted! We will contact you soon for payment *NO PAYMENT NO ORDER*.</p>
+            <p class="text-danger text-center mt-3 d-none" id="orderFail">Failed to send. Try again later.</p>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5>𝕀ℕ𝕂𝕍𝔼ℝ</h5>
+          <p class="muted-small">Made in India · Ships countrywide</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6>Follow</h6>
+          <a class="me-2 muted-small" href="https://www.instagram.com/inkver_cloths"><i class="bi bi-instagram"></i> Instagram</a>
+          <a class="me-2 muted-small" href="https://youtube.com/@inkverclothes"><i class="bi bi-youtube"></i> YouTube</a>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6>Contact</h6>
+          <p class="muted-small">Email: <a class="muted-small" href="mailto:inkverstore@example.com">inkverstore@example.com</a></p>
+        </div>
+      </div>
+      <div class="text-center muted-small mt-3">&copy; <span id="year"></span> 𝕀ℕ𝕂𝕍𝔼ℝ — All rights reserved</div>
+    </div>
+  </footer>
+
+  <!-- CART OVERLAY (hidden until cart button pressed) -->
+  <div id="cartOverlay" class="cart-overlay d-none" aria-hidden="true">
+    <div class="cart-box" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <h5 class="mb-0" id="cartTitle">My Bag</h5>
+        <button class="btn-close btn-close-white" id="closeCartBtn" aria-label="Close"></button>
+      </div>
+
+      <div id="cartList" class="mb-2">
+        <div class="cart-empty">Your bag is empty.</div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="muted-small">Total</div>
+        <div class="fw-bold" id="cartTotal">₹0</div>
+      </div>
+
+      <div class="cart-actions">
+        <button class="btn btn-light" id="cartCheckoutBtn">Buy All — Order (we’ll contact you)</button>
+        <button class="btn btn-cancel" id="cartCancelBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Basic utilities & state
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const STORAGE_KEY = 'inkver_cart_v1';
+    let cart = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    let selectedProduct = null;
+
+    // Elements
+    const cartCountBadge = document.getElementById('cartCount');
+    const cartToggle = document.getElementById('cartToggle');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartList = document.getElementById('cartList');
+    const cartTotal = document.getElementById('cartTotal');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
+    const cartCancelBtn = document.getElementById('cartCancelBtn');
+
+    // Order modal
+    const orderModalEl = document.getElementById('orderModal');
+    const orderModal = new bootstrap.Modal(orderModalEl);
+    const orderForm = document.getElementById('orderForm');
+    const orderMessageInput = document.getElementById('orderMessage');
+    const orderSuccess = document.getElementById('orderSuccess');
+    const orderFail = document.getElementById('orderFail');
+
+    // Initialize
+    renderCartUI();
+
+    //
+    // PRODUCT MODAL HANDLING (works with every modal instance)
+    //
+    document.querySelectorAll('.product-modal').forEach(modalEl => {
+      modalEl.addEventListener('show.bs.modal', function (event) {
+        const trigger = event.relatedTarget; // the button that opened the modal
+        const name = trigger?.getAttribute('data-name') || '';
+        const price = trigger?.getAttribute('data-price') || '0';
+        const desc = trigger?.getAttribute('data-desc') || '';
+        const image = trigger?.getAttribute('data-image') || ''; // optional
+
+        // modal-scoped elements (use classes so each modal instance is independent)
+        const modal = modalEl;
+        const nameEl = modal.querySelector('.modal-product-name');
+        const titleEl = modal.querySelector('.modal-product-title');
+        const priceEl = modal.querySelector('.modal-product-price');
+        const descEl = modal.querySelector('.modal-product-desc');
+        const imgEl = modal.querySelector('.modal-product-image');
+        const sizeEl = modal.querySelector('.modal-product-size');
+        const buyNoteEl = modal.querySelector('.modal-buy-note');
+        const quickAddBtn = modal.querySelector('.modal-quick-add');
+        const buyNowBtn = modal.querySelector('.modal-buy-now');
+        const openOrderBtn = modal.querySelector('.modal-open-order');
+
+        selectedProduct = { name, price: Number(price), qty: 1, size: '' };
+
+        nameEl.textContent = name;
+        titleEl.textContent = name;
+        priceEl.textContent = '₹' + Number(price).toLocaleString('en-IN');
+        descEl.textContent = desc;
+        if(image && imgEl) imgEl.src = image;
+        if(sizeEl) sizeEl.value = '';
+
+        // hide buy note initially
+        if(buyNoteEl) buyNoteEl.style.display = 'none';
+
+        // set quick add button price/name for this modal
+        if(quickAddBtn){
+          quickAddBtn.dataset.name = name;
+          quickAddBtn.dataset.price = price;
+          // remove previously attached handlers by cloning the node
+          const newQuick = quickAddBtn.cloneNode(true);
+          quickAddBtn.parentNode.replaceChild(newQuick, quickAddBtn);
+          newQuick.addEventListener('click', () => {
+            const itemName = newQuick.dataset.name || name;
+            const itemPrice = Number(newQuick.dataset.price) || 0;
+            const itemSize = sizeEl?.value || '';
+            addToCart({ name: itemName, price: itemPrice, qty: 1, size: itemSize });
+            // hide this modal
+            bootstrap.Modal.getInstance(modal).hide();
+          });
+        }
+
+        // buy now -> show buy-note and set selectedProduct size
+        if(buyNowBtn){
+          buyNowBtn.onclick = () => {
+            selectedProduct.size = sizeEl?.value || '';
+            if(buyNoteEl) buyNoteEl.style.display = 'block';
+          };
+        }
+
+        // open order form from this modal's order button
+        if(openOrderBtn){
+          openOrderBtn.onclick = () => {
+            // create order summary combining cart + selectedProduct if not already in cart
+            const summaryLines = cart.map(it => `${it.name}${it.size?(' ('+it.size+')'):''} x${it.qty} — ₹${(it.price*it.qty).toLocaleString('en-IN')}`);
+            const found = selectedProduct && cart.find(c => c.name === selectedProduct.name && c.size === selectedProduct.size);
+            if(selectedProduct && !found) {
+              summaryLines.push(`${selectedProduct.name}${selectedProduct.size?(' ('+selectedProduct.size+')'):''} x${selectedProduct.qty} — ₹${(selectedProduct.price*selectedProduct.qty).toLocaleString('en-IN')}`);
+            }
+            const total = cart.reduce((s,i)=>s + i.price*i.qty,0) + ((selectedProduct && !found) ? selectedProduct.price*selectedProduct.qty : 0);
+            const message = `Order details:\n${summaryLines.join('\n')}\n\nTotal: ₹${total.toLocaleString('en-IN')}\n\nNote: NO PAYMENT NOW — we will contact you for payment.`;
+            orderMessageInput.value = message;
+            orderModal.show();
+          };
+        }
+      });
+    });
+
+    // Add-to-cart buttons on product cards (outside modal)
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const name = btn.getAttribute('data-name') || 'Item';
+        const price = Number(btn.getAttribute('data-price')) || 0;
+        // try to pick size from a nearby select if present (cards have none by default)
+        const size = btn.closest('.card')?.querySelector('select')?.value || '';
+        addToCart({ name, price, qty: 1, size });
+      });
+    });
+
+    function addToCart(item) {
+      const found = cart.find(c => c.name === item.name && c.size === item.size);
+      if (found) found.qty += item.qty;
+      else cart.push(item);
+      saveCart();
+      renderCartUI();
+    }
+
+    function saveCart(){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    }
+
+    function renderCartUI(){
+      // count
+      const count = cart.reduce((s,i)=>s+i.qty,0);
+      cartCountBadge.textContent = count;
+
+      // list
+      cartList.innerHTML = '';
+      if(cart.length === 0){
+        cartList.innerHTML = '<div class="cart-empty">Your bag is empty.</div>';
+        cartTotal.textContent = '₹0';
+        return;
+      }
+
+      let total = 0;
+      cart.forEach((it, idx) => {
+        const subtotal = it.price * it.qty;
+        total += subtotal;
+
+        const itemEl = document.createElement('div');
+        itemEl.className = 'cart-item';
+        itemEl.dataset.index = idx;
+
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+
+        const title = document.createElement('div');
+        title.innerHTML = `<strong>${it.name}</strong><div class="muted-small">${it.size?it.size+' • ':''}Qty: ${it.qty}</div>`;
+
+        meta.appendChild(title);
+
+        const right = document.createElement('div');
+        right.style.display = 'flex';
+        right.style.alignItems = 'center';
+        right.style.gap = '12px';
+        right.innerHTML = `<div>₹${subtotal.toLocaleString('en-IN')}</div><button class="remove" aria-label="Remove item">✕</button>`;
+
+        itemEl.appendChild(meta);
+        itemEl.appendChild(right);
+        cartList.appendChild(itemEl);
+      });
+
+      cartTotal.textContent = '₹' + total.toLocaleString('en-IN');
+    }
+
+    // Event delegation for removing items (click on ✕)
+    cartList.addEventListener('click', (e) => {
+      const removeBtn = e.target.closest('.remove');
+      if(!removeBtn) return;
+      const itemNode = removeBtn.closest('.cart-item');
+      if(!itemNode) return;
+      const idx = Number(itemNode.dataset.index);
+      if(Number.isFinite(idx)){
+        // remove the item
+        cart.splice(idx,1);
+        saveCart();
+        renderCartUI();
+      }
+    });
+
+    // Cart toggle handlers (open/close)
+    cartToggle.addEventListener('click', () => {
+      cartOverlay.classList.remove('d-none');
+      // allow CSS transition to animate opacity
+      setTimeout(()=>cartOverlay.classList.add('show'), 10);
+    });
+
+    closeCartBtn.addEventListener('click', () => {
+      closeCartOverlay();
+    });
+
+    cartCancelBtn.addEventListener('click', () => {
+      // Cancel button inside cart: simply close overlay
+      closeCartOverlay();
+    });
+
+    function closeCartOverlay(){
+      cartOverlay.classList.remove('show');
+      setTimeout(()=>cartOverlay.classList.add('d-none'), 260);
+    }
+
+    // click outside cart-box closes it
+    cartOverlay.addEventListener('click', (e) => {
+      if (e.target === cartOverlay) closeCartOverlay();
+    });
+
+    // Order from product modal note uses modal-open-order handlers (set per modal above)
+
+    // Checkout from cart button
+    cartCheckoutBtn.addEventListener('click', () => {
+      if(cart.length === 0){
+        alert('Your cart is empty. Add items before ordering.');
+        return;
+      }
+      const summaryLines = cart.map(it => `${it.name}${it.size?(' ('+it.size+')'):''} x${it.qty} — ₹${(it.price*it.qty).toLocaleString('en-IN')}`);
+      const total = cart.reduce((s,i)=>s + i.price*i.qty,0);
+      const message = `Order details:\n${summaryLines.join('\n')}\n\nTotal: ₹${total.toLocaleString('en-IN')}\n\nNote: NO PAYMENT NOW — we will contact you for payment.`;
+      orderMessageInput.value = message;
+      orderModal.show();
+      // close cart overlay
+      closeCartOverlay();
+    });
+
+    // Submit order -> Web3Forms
+    orderForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      orderSuccess.classList.add('d-none');
+      orderFail.classList.add('d-none');
+
+      // use FormData so Web3Forms receives expected multipart form fields
+      const formData = new FormData(orderForm);
+      if(!formData.get('message')) formData.set('message', orderMessageInput.value || 'No order details.');
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+        if(res.ok && data.success){
+          orderSuccess.classList.remove('d-none');
+          cart = [];
+          saveCart();
+          renderCartUI();
+          setTimeout(() => {
+            orderModal.hide();
+            orderSuccess.classList.add('d-none');
+            orderForm.reset();
+          }, 1800);
+        } else {
+          orderFail.classList.remove('d-none');
+          console.error('Web3Forms error:', data);
+        }
+      } catch (err) {
+        orderFail.classList.remove('d-none');
+        console.error(err);
+      }
+    });
+
+    // Safe handlers for optional forms if present
+    try {
+      const newsletterForm = document.getElementById('newsletterForm');
+      if(newsletterForm) newsletterForm.addEventListener('submit', (e)=>{ e.preventDefault(); alert('Thanks! You are subscribed.'); newsletterForm.reset(); });
+    } catch(e){/* ignore */}
+
+    try {
+      const contactForm = document.getElementById('contactForm');
+      if(contactForm) contactForm.addEventListener('submit', (e)=>{ e.preventDefault(); alert("Message sent. We'll get back to you."); contactForm.reset(); });
+    } catch(e){/* ignore */}
+
+    // Respect reduced motion
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.card-product').forEach(c=>c.style.transition='none');
+    }
+  </script>
+</body>
+</html>

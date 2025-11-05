@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | 𝕀ℕ𝕍𝔼ℝ</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+    .contact-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 15px;
+    }
+    .contact-card {
+      background-color: #111;
+      border: 1px solid #222;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+    .form-control {
+      background-color: transparent;
+      border: 1px solid #555;
+      color: #fff;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #fff;
+      box-shadow: none;
+    }
+    .btn-custom {
+      background-color: #fff;
+      color: #000;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+    .social-links a {
+      color: #fff;
+      font-size: 1.4rem;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+    .social-links a:hover {
+      color: #ccc;
+    }
+    h2 {
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+    .navbar { background-color: transparent; }
+    .nav-link { color: #bbb !important; }
+    .nav-link:hover { color: #fff !important; }
+    .about-section {
+      padding: 5rem 0;
+    }
+  </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-white" href="index.html">𝕀ℕ𝕂𝕍𝔼ℝ</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"><i class="bi bi-list text-white"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/main.htm">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/col.htm">Collections</a></li>
+          <li class="nav-item"><a class="nav-link" href="/abt.htm">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="contact-section">
+    <div class="contact-card">
+      <h2>CONTACT 𝕀ℕ𝕍𝔼ℝ</h2>
+      <p class="text-secondary mb-4">Have a question or want to collaborate? We’d love to hear from you.</p>
+
+      <form action="https://api.web3forms.com/submit" method="POST" class="text-start">
+        <input type="hidden" name="access_key" value="0e2d46e3-87ce-48c2-9dc8-7916a63f96cd">
+
+        <div class="mb-3">
+          <label class="form-label">Your Name</label>
+          <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Message</label>
+          <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-custom w-100 py-2">Send Message</button>
+      </form>
+
+      <div class="social-links mt-4">
+        <p class="text-secondary">or reach us via</p>
+        <a href="https://www.instagram.com/inkver_cloths?igsh=aW5sMGdodXJ6ZzBx" target="_blank"><i class="bi bi-instagram"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</body>
+</html>

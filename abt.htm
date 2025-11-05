@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>𝕀ℕ𝕂𝕍𝔼ℝ — About Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0b0b0b;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+    .navbar { background-color: transparent; }
+    .nav-link { color: #bbb !important; }
+    .nav-link:hover { color: #fff !important; }
+    .about-section {
+      padding: 5rem 0;
+    }
+    .about-title {
+      text-align: center;
+      font-size: 3rem;
+      letter-spacing: 2px;
+      margin-bottom: 3rem;
+    }
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      color: #cfcfcf;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    .mission {
+      margin-top: 4rem;
+      background: rgba(255,255,255,0.03);
+      padding: 3rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .mission h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+    .team {
+      margin-top: 4rem;
+    }
+    .team h3 { font-size: 1.8rem; margin-bottom: 2rem; }
+    .team-member {
+      text-align: center;
+    }
+    .team-member img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      filter: grayscale(100%);
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 3rem 0 2rem 0; text-align: center; }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-white" href="index.html">𝕀ℕ𝕂𝕍𝔼ℝ</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"><i class="bi bi-list text-white"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/main.htm">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/cont.htm">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ABOUT SECTION -->
+  <section class="about-section">
+    <div class="container">
+      <h1 class="about-title">About 𝕀ℕ𝕂𝕍𝔼ℝ</h1>
+      <div class="about-content">
+        <p>Founded with a vision to redefine minimalism, <strong>𝕀ℕ𝕂𝕍𝔼ℝ</strong> is a contemporary clothing brand celebrating the balance between black and white — simplicity and strength. Every design reflects the beauty of contrast and the confidence that comes from effortless style.</p>
+        <p>Our philosophy is rooted in clean aesthetics, comfort, and timeless craftsmanship. We believe in empowering individuality through designs that transcend trends and seasons.</p>
+      </div>
+
+      <div class="mission">
+        <h3>Our Mission</h3>
+        <p>To craft clothing that speaks in silence — bold, elegant, and empowering. <strong>𝕀ℕ𝕂𝕍𝔼ℝ</strong> stands for more than fashion; it’s a lifestyle of grace, strength, and identity. We aim to offer sustainable, premium-quality garments that make every wearer feel confident, stylish, and unstoppable.</p>
+      </div>
+
+      <div class="team">
+        <h3 class="text-center">Meet Our Creative Team</h3>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-3 team-member">
+            <a href="https://www.instagram.com/_.devansh.05?igsh=MXRwMDZqNHA4ODRxbA=="><img src="/devansh.jpg" alt="founder"></a>
+            <h5 class="text-white">𝔻𝔼𝕍𝔸ℕ𝕊ℍ</h5>
+            <p class="text-secondary">Fₒᵤₙdₑᵣ & Cᵣₑₐₜᵢᵥₑ Dᵢᵣₑcₜₒᵣ</p>
+          </div>
+          <div class="col-md-3 team-member">
+            <a href="https://www.instagram.com/flex.kunal0u?igsh=d3JsbnFyeXplc3ow"><img src="/KUNAL.jpg" alt="Designer"></a>
+            <h5 class="text-white">𝕂𝕌ℕ𝔸𝕃</h5>
+            <p class="text-secondary">Fₒᵤₙdₑᵣ & Dᵢgᵢₜₐₗ ₕₑₐd</p>
+          </div>
+          <div class="col-md-3 team-member">
+            <img src="/karan.jpg" alt="Marketing Head">
+            <h5 class="text-white">𝕂𝔸ℝ𝔸ℕ</h5>
+            <p class="text-secondary">ₘₐᵣₖₑₜᵢₙg ₕₑₐd</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p class="text-secondary mb-0">&copy; <span id="year"></span> 𝕀ℕ𝕂𝕍𝔼ℝ — All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
